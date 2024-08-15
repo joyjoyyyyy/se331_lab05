@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Student } from '@/types'
 defineProps<{ student: Student }>()
-
 </script>
 
 <template>
@@ -26,5 +25,4 @@ defineProps<{ student: Student }>()
   transform: scale(1.01);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 02);
 }
-
 </style>
