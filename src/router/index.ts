@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import EventListView from '@/views/EventListView.vue'
+import EventListView from '@/views/event/EventListView.vue'
 import AboutView from '@/views/AboutView.vue'
 import StudentInfo from '@/views/StudentInfo.vue'
 import EventDetailView from '@/views/event/DetailView.vue'
@@ -10,6 +10,9 @@ import NotFoundView from '@/views/NotFoundView.vue'
 import NetworkErrorView from '@/views/NetworkErrorView.vue'
 import nProgress from 'nprogress'
 import EventService from '@/services/EventService'
+import AddEventView from '@/views/event/EventFormView.vue'
+import OrganizerListView from '@/views/organizer/OrganizerListView.vue'
+import OrganizerFormView from '@/views/organizer/OrganizerFormView.vue'
 import { useEventStore } from '@/stores/event'
 
 const router = createRouter({
@@ -25,6 +28,15 @@ const router = createRouter({
       name: 'event-list-view',
       component: EventListView,
       props: (route) => ({ page: parseInt(route.query.page?.toString() || '1') })
+    },
+    {
+      path: '/organizers',
+      name: 'organizer-list-view',
+      component: OrganizerListView,
+      props: (route) => ({
+        page: parseInt(route.query?.page?.toString() || '1'),
+        perPage: parseInt(route.query?.per_page?.toString() || '2')
+      })
     },
     {
       path: '/event/:id',
@@ -76,6 +88,18 @@ const router = createRouter({
 
       component: AboutView
     },
+
+    {
+      path: '/add-event',
+      name: 'add-event',
+      component: AddEventView
+    },
+    {
+      path: '/add-organizer',
+      name: 'add-organizer',
+      component: OrganizerFormView
+    },
+
     {
       path: '/404/:resource',
       name: '404-resource-view',
